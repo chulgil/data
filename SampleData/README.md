@@ -5,10 +5,9 @@
 ```sql
 
 
-DELIMITER $$
-
 CREATE FUNCTION RandomCharacter(input_string VARCHAR(255))
 RETURNS CHAR(1)
+DETERMINISTIC
 BEGIN
     DECLARE string_length INT;
     DECLARE random_index INT;
@@ -16,13 +15,9 @@ BEGIN
 
     SET string_length = CHAR_LENGTH(input_string);
     SET random_index = FLOOR(1 + RAND() * string_length);
-
     SET random_char = SUBSTRING(input_string, random_index, 1);
 
     RETURN random_char;
-END$$
-
-DELIMITER ;
-
+END;
 
 ```
