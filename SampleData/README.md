@@ -58,3 +58,37 @@ END;
 
 
 ```
+
+## 랜덤 급여 생성
+
+```sql
+
+
+CREATE FUNCTION f_rand_salary() RETURNS DECIMAL(10,2)
+DETERMINISTIC
+COMMENT '랜덤한 급여를 생성하는 함수. 최소단위는 100임'
+BEGIN
+    DECLARE min_salary DECIMAL(10,2) DEFAULT 1000.00; -- 최소 급여
+    DECLARE max_salary DECIMAL(10,2) DEFAULT 10000.00; -- 최대 급여
+    DECLARE random_salary DECIMAL(10,2); -- 랜덤한 급여
+
+    -- 최소 급여와 최대 급여 사이의 랜덤한 값을 생성하여 random_salary 변수에 저장
+    -- 최소단위가 100이 되도록 min_salary를 기준으로 조정하여 계산함.
+    SET random_salary = FLOOR((RAND() * (max_salary - min_salary) + min_salary) / 100) * 100;
+
+    RETURN random_salary; -- 랜덤한 급여 반환
+END
+
+
+```
+
+
+## 랜덤 테이블 프로시저 작성
+
+```sql
+
+
+
+
+
+```
